@@ -1,0 +1,84 @@
+{
+  "theme": "light",
+  "archetype": "4 (Swiss & High-Contrast) - Editorial Variant",
+  "typography": {
+    "heading_font": "ui-serif, Georgia, Cambria, 'Times New Roman', Times, serif",
+    "body_font": "ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif",
+    "mono_font": "ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, 'Liberation Mono', 'Courier New', monospace",
+    "hierarchy": {
+      "h1": "text-4xl sm:text-5xl font-serif tracking-tight text-zinc-950 dark:text-zinc-50",
+      "h2": "text-2xl sm:text-3xl font-serif tracking-tight text-zinc-900 dark:text-zinc-100",
+      "h3": "text-xl font-serif text-zinc-800 dark:text-zinc-200",
+      "body": "text-base font-sans text-zinc-700 dark:text-zinc-300 leading-relaxed",
+      "small": "text-sm font-sans text-zinc-500 dark:text-zinc-400"
+    },
+    "notes": "CRITICAL: Must use system fonts ONLY. No Google Fonts or external font requests."
+  },
+  "colors": {
+    "light": {
+      "background": "#FFFFFF",
+      "surface": "#F4F4F5",
+      "border": "#E4E4E7",
+      "text_primary": "#09090B",
+      "text_secondary": "#52525B",
+      "primary": "#09090B",
+      "primary_foreground": "#FFFFFF"
+    },
+    "dark": {
+      "background": "#09090B",
+      "surface": "#18181B",
+      "border": "#27272A",
+      "text_primary": "#FAFAFA",
+      "text_secondary": "#A1A1AA",
+      "primary": "#FAFAFA",
+      "primary_foreground": "#09090B"
+    },
+    "rules": "No gradients. Strictly neutral monochrome palette using Tailwind's zinc scale."
+  },
+  "layout": {
+    "shell": "flex h-screen w-full bg-white dark:bg-zinc-950 overflow-hidden",
+    "sidebar": "w-64 border-r border-zinc-200 dark:border-zinc-800 bg-zinc-50/50 dark:bg-zinc-900/50 flex flex-col h-full",
+    "main_content": "flex-1 overflow-y-auto p-8 sm:p-12 md:p-16",
+    "bento_grid": "grid grid-cols-1 md:grid-cols-3 gap-6",
+    "borders": "Use 1px solid borders (border-zinc-200 dark:border-zinc-800). Radii should be minimal, max rounded-md for a print-like feel."
+  },
+  "components": {
+    "button": "rounded-md px-4 py-2 text-sm font-sans font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-950 dark:focus-visible:ring-zinc-50 disabled:pointer-events-none disabled:opacity-50",
+    "primary_button": "bg-zinc-950 text-zinc-50 hover:bg-zinc-900 dark:bg-zinc-50 dark:text-zinc-950 dark:hover:bg-zinc-200",
+    "secondary_button": "border border-zinc-200 dark:border-zinc-800 bg-transparent hover:bg-zinc-100 dark:hover:bg-zinc-800 text-zinc-950 dark:text-zinc-50",
+    "card": "border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 p-6 rounded-md shadow-sm",
+    "input": "flex h-10 w-full rounded-md border border-zinc-200 dark:border-zinc-800 bg-white dark:bg-zinc-950 px-3 py-2 text-sm ring-offset-white dark:ring-offset-zinc-950 file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-zinc-500 dark:placeholder:text-zinc-400 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-zinc-950 dark:focus-visible:ring-zinc-300 disabled:cursor-not-allowed disabled:opacity-50",
+    "table": {
+      "wrapper": "w-full overflow-auto border border-zinc-200 dark:border-zinc-800 rounded-md",
+      "element": "w-full caption-bottom text-sm text-left",
+      "header": "border-b border-zinc-200 dark:border-zinc-800 bg-zinc-50 dark:bg-zinc-900 font-serif font-medium text-zinc-950 dark:text-zinc-50",
+      "row": "border-b border-zinc-200 dark:border-zinc-800 transition-colors hover:bg-zinc-100/50 dark:hover:bg-zinc-800/50",
+      "cell": "p-4 align-middle text-zinc-700 dark:text-zinc-300"
+    }
+  },
+  "visual_enhancers": {
+    "shadows": "Minimal. Stick to flat borders and shadow-sm. Avoid heavy drop shadows to maintain editorial precision.",
+    "animations": "Subtle transition-all duration-200. No heavy spring physics.",
+    "custom_svg": "Use native <svg> tags for the Value vs Effort scatter plot. It should use `currentColor` and raw zinc color classes. Axis lines should be 1px stroke-zinc-300 dark:stroke-zinc-700."
+  },
+  "icons": "lucide-react (use default stroke widths)",
+  "testing": {
+    "attributes": "All interactive and informational elements MUST include a data-testid attribute (e.g., data-testid='sidebar-new-board-button', data-testid='rice-table-row')"
+  },
+  "media": {
+    "image_urls": [],
+    "notes": "CRITICAL: No external images, logos, or placeholders. Application must run completely offline/locally."
+  },
+  "instructions_to_main_agent": [
+    "You are working with .js or .jsx files, not .tsx. Set up components accordingly.",
+    "DO NOT add any <link> tags for Google Fonts in index.html. DO NOT use @import for fonts. Rely entirely on standard system font classes (font-serif, font-sans).",
+    "Configure Tailwind to support dark mode with 'class' strategy.",
+    "Build a custom responsive SVG component for the Value vs Effort scatter plot. Do not use Recharts or any other charting library, as per the 'zero dependencies' preference for the scatter plot. Make sure it uses Tailwind classes for colors so it respects dark mode.",
+    "Implement localStorage logic for managing Boards and Light/Dark mode state.",
+    "On initial load, if there are no boards in localStorage, inject a default RICE framework board with a few sample items to demonstrate functionality.",
+    "Ensure all Shadcn components (if used) are fully customized to match this print editorial, high-contrast monochrome aesthetic (remove generic rounding and blue focus rings).",
+    "The Kano model board should use a multi-column (or horizontal scrolling bento grid) view grouped by category.",
+    "Add an 'About' section accessible from the sidebar that clearly explains the local-only, tracking-free privacy model.",
+    "Use standard semantic HTML with Tailwind for the layout and components."
+  ]
+}
