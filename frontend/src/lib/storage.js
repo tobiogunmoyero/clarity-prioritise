@@ -3,6 +3,8 @@
 
 import { FRAMEWORKS, defaultItemForFramework } from "./frameworks";
 
+const VALID_FRAMEWORKS = new Set(Object.values(FRAMEWORKS));
+
 const STORAGE_KEY = "clarity-prioritise:v1";
 const THEME_KEY = "clarity-prioritise:theme";
 
@@ -218,6 +220,11 @@ export function importBoardFromJson(state, jsonText) {
   if (!incoming || !incoming.framework || !Array.isArray(incoming.items)) {
     throw new Error("File does not look like a Clarity board export.");
   }
+  if (!VALID_FRAMEWORKS.has(incoming.framework)) {
+    throw new Error(
+      `Unknown framework "${incoming.framework}". Expected one of: ${[...VALID_FRAMEWORKS].join(", ")}.`,
+    );
+  }
   const board = {
     id: uid(),
     name: (incoming.name || "Imported board") + " (imported)",
@@ -239,8 +246,8 @@ export function loadTheme() {
   try {
     const t = localStorage.getItem(THEME_KEY);
     if (t === "light" || t === "dark") return t;
-  } catch {
-    /* noop */
+  } catch (err) {
+    console.warn("clarity-prioritise: could not read theme from localStorage", err);
   }
   return "light";
 }
@@ -248,7 +255,7 @@ export function loadTheme() {
 export function saveTheme(theme) {
   try {
     localStorage.setItem(THEME_KEY, theme);
-  } catch {
-    /* noop */
+  } catch (err) {
+    console.warn("clarity-prioritise: could not persist theme to localStorage", err);
   }
 }
