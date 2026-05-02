@@ -16,4 +16,4 @@ You can run multiple boards, switch frameworks per board, export to JSON, and im
 
 Everything runs in your browser. There is no backend, no account system, no analytics, and no external requests. Your boards are saved to localStorage on your device. If you clear your browser data, your boards go with it. Use the Export feature to back them up.
 
-## Run it locally# Here are your Instructions
+## Run it locally
